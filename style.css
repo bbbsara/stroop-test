@@ -1,128 +1,122 @@
-/* إعدادات عامة للخطوط والألوان */
+/* إعدادات عامة */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f2f5;
+    background-color: #e9ecef; /* خلفية الصفحة أغمق قليلاً للتباين */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
     text-align: center;
+    direction: rtl;
 }
 
-/* الحاوية الرئيسية للتطبيق */
+/* الحاوية الرئيسية */
 .container {
     background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     width: 90%;
     max-width: 500px;
 }
 
-/* إخفاء جميع الشاشات افتراضياً */
+/* الشاشات */
 .screen {
     display: none;
-    animation: fadeIn 0.5s;
+    animation: fadeIn 0.4s ease-in-out;
 }
 
-/* إظهار الشاشة التي تحمل كلاس "active" فقط */
 .screen.active {
     display: block;
 }
 
-h1 { color: #333; }
+/* النصوص */
+h1 { color: #2c3e50; margin-bottom: 10px; }
+p { color: #555; font-size: 1.1em; }
 
-/* تنسيق حقل الإدخال */
+/* حقل الاسم */
 input[type="text"] {
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    width: 70%;
-    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    width: 80%;
+    margin: 20px 0;
+    text-align: center;
     outline: none;
+    transition: border-color 0.3s;
 }
 
 input[type="text"]:focus {
-    border-color: #4a90e2;
+    border-color: #3498db;
 }
 
-/* تنسيق الأزرار العامة */
-button {
-    background-color: #4a90e2;
+/* زر البدء وإعادة المحاولة */
+#start-btn, button[onclick="location.reload()"] {
+    background-color: #3498db;
     color: white;
     border: none;
-    padding: 12px 24px;
+    padding: 12px 30px;
     font-size: 18px;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.1s;
-}
-
-button:hover {
-    background-color: #357abd;
-}
-
-button:active {
-    transform: scale(0.95);
-}
-
-/* تنسيق كلمة الاختبار (الكلمة الملونة) */
-.stroop-word {
-    font-size: 60px;
     font-weight: bold;
-    margin: 40px 0;
-    min-height: 80px; /* لحفظ المكان حتى لو لم تظهر الكلمة فوراً */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* شبكة الأزرار (الخيارات) */
+#start-btn:hover { background-color: #2980b9; }
+
+/* الكلمة الملونة (الاختبار) */
+.stroop-word {
+    font-size: 70px;
+    font-weight: 800;
+    margin: 30px 0;
+    min-height: 90px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* شبكة الخيارات */
 .options-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr; /* عمودين */
     gap: 15px;
     margin-top: 20px;
 }
 
-/* أزرار اختيار الألوان */
+/* 🟢 تصحيح الأزرار لتظهر بوضوح */
 .color-btn {
     padding: 15px;
     font-size: 20px;
     font-weight: bold;
-    border: 2px solid #eee;
-    border-radius: 8px;
-    background: #fff;
+    color: #333;
+    border: 2px solid #bdc3c7; /* حدود رمادية واضحة */
+    border-radius: 10px;
+    background: #f8f9fa; /* خلفية رمادية فاتحة بدلاً من الأبيض */
     cursor: pointer;
     transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .color-btn:hover {
-    background-color: #f9f9f9;
-    border-color: #ccc;
+    background-color: #e2e6ea; /* تغميق اللون عند المرور */
+    border-color: #adb5bd;
+    transform: translateY(-2px);
 }
 
-/* مربع التوقيت */
+.color-btn:active {
+    transform: translateY(0);
+}
+
+/* المؤقت */
 .timer-box {
-    font-size: 20px;
-    color: #666;
-    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-bottom: 10px;
 }
+#timer { color: #e74c3c; font-weight: bold; font-size: 1.5rem; }
 
-#timer {
-    color: #e74c3c;
-    font-weight: bold;
-    font-size: 24px;
-}
-
-/* ملخص النتائج */
-.results-summary p {
-    font-size: 18px;
-    margin: 10px 0;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 5px;
-}
-
-/* حركة ظهور ناعمة */
+/* حركة الظهور */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
