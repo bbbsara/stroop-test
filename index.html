@@ -1,45 +1,51 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>اختبار ستروب</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-
     <div class="container">
-        <h1>اختبار ستروب</h1>
 
-        <div id="name-section">
-            <label>الاسم:</label>
-            <input type="text" id="username" placeholder="اكتب الاسم هنا">
-            <button onclick="startTest()">ابدأ الاختبار</button>
+        <h1 class="title">اختبار ستروب</h1>
+
+        <div id="start-screen">
+            <input id="username" type="text" placeholder="الاسم" />
+            <button id="start-btn">ابدأ الاختبار</button>
         </div>
 
-        <div id="test-section" style="display:none;">
-            <div id="word"></div>
+        <div id="test-screen" class="hidden">
 
-            <div class="buttons">
-                <button onclick="selectColor('red')">أحمر</button>
-                <button onclick="selectColor('green')">أخضر</button>
-                <button onclick="selectColor('blue')">أزرق</button>
-                <button onclick="selectColor('yellow')">أصفر</button>
-                <button onclick="selectColor('black')">أسود</button>
+            <div class="timer">الوقت: <span id="time">45</span></div>
+
+            <div class="card-container">
+                <div id="color-word" class="card-word"></div>
             </div>
 
-            <div id="progress"></div>
+            <div class="buttons">
+                <button class="color-btn" data-color="red">أحمر</button>
+                <button class="color-btn" data-color="green">أخضر</button>
+                <button class="color-btn" data-color="blue">أزرق</button>
+                <button class="color-btn" data-color="yellow">أصفر</button>
+                <button class="color-btn" data-color="black">أسود</button>
+            </div>
+
         </div>
 
-        <div id="end-section" style="display:none;">
-            <h2>تم الاختبار</h2>
-            <p id="result"></p>
+        <div id="end-screen" class="hidden">
+            <h2>انتهى الاختبار</h2>
+            <p>الإجابات الصحيحة: <span id="correct-count"></span></p>
+            <p>عدد الأخطاء: <span id="wrong-count"></span></p>
+            <p>العدد الكلي: <span id="total-count"></span></p>
+            <button id="restart-btn">إعادة</button>
         </div>
 
     </div>
 
     <script src="config.js"></script>
     <script src="script.js"></script>
-
 </body>
 </html>
