@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار ستروب</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>اختبار ستروب</h1>
+
+        <div id="name-section">
+            <label>الاسم:</label>
+            <input type="text" id="username" placeholder="اكتب الاسم هنا">
+            <button onclick="startTest()">ابدأ الاختبار</button>
+        </div>
+
+        <div id="test-section" style="display:none;">
+            <div id="word"></div>
+
+            <div class="buttons">
+                <button onclick="selectColor('red')">أحمر</button>
+                <button onclick="selectColor('green')">أخضر</button>
+                <button onclick="selectColor('blue')">أزرق</button>
+                <button onclick="selectColor('yellow')">أصفر</button>
+                <button onclick="selectColor('black')">أسود</button>
+            </div>
+
+            <div id="progress"></div>
+        </div>
+
+        <div id="end-section" style="display:none;">
+            <h2>تم الاختبار</h2>
+            <p id="result"></p>
+        </div>
+
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
