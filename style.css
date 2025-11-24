@@ -1,77 +1,129 @@
+/* إعدادات عامة للخطوط والألوان */
 body {
-    background: #f7f7f7;
-    font-family: 'Tajawal', sans-serif;
-    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
+    text-align: center;
 }
 
+/* الحاوية الرئيسية للتطبيق */
 .container {
-    margin-top: 40px;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 500px;
 }
 
-.title {
-    font-size: 32px;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-.hidden {
+/* إخفاء جميع الشاشات افتراضياً */
+.screen {
     display: none;
+    animation: fadeIn 0.5s;
 }
 
-#username {
-    padding: 12px;
-    width: 250px;
-    font-size: 18px;
-    margin-bottom: 15px;
+/* إظهار الشاشة التي تحمل كلاس "active" فقط */
+.screen.active {
+    display: block;
 }
 
-#start-btn,
-#restart-btn {
-    padding: 12px 25px;
-    font-size: 18px;
-    background: #0a233b;
-    color: #fff;
+h1 { color: #333; }
+
+/* تنسيق حقل الإدخال */
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    width: 70%;
+    margin-bottom: 20px;
+    outline: none;
+}
+
+input[type="text"]:focus {
+    border-color: #4a90e2;
+}
+
+/* تنسيق الأزرار العامة */
+button {
+    background-color: #4a90e2;
+    color: white;
     border: none;
-    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.1s;
 }
 
-.timer {
-    font-size: 22px;
+button:hover {
+    background-color: #357abd;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* تنسيق كلمة الاختبار (الكلمة الملونة) */
+.stroop-word {
+    font-size: 60px;
+    font-weight: bold;
+    margin: 40px 0;
+    min-height: 80px; /* لحفظ المكان حتى لو لم تظهر الكلمة فوراً */
+}
+
+/* شبكة الأزرار (الخيارات) */
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* أزرار اختيار الألوان */
+.color-btn {
+    padding: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.color-btn:hover {
+    background-color: #f9f9f9;
+    border-color: #ccc;
+}
+
+/* مربع التوقيت */
+.timer-box {
+    font-size: 20px;
+    color: #666;
     margin-bottom: 20px;
 }
 
-.card-container {
-    margin: 25px auto;
-    width: 70%;
-    max-width: 300px;
+#timer {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 24px;
 }
 
-.card-word {
-    background: #ffffff;
-    border-radius: 12px;
-    padding: 40px;
-    font-size: 40px;
-    border: 2px solid #ccc;
-    min-height: 60px;
+/* ملخص النتائج */
+.results-summary p {
+    font-size: 18px;
+    margin: 10px 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
 }
 
-.buttons {
-    margin-top: 25px;
+/* حركة ظهور ناعمة */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
-
-.color-btn {
-    padding: 12px 25px;
-    margin: 8px;
-    font-size: 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.color-btn[data-color="red"] { background:#ffb3b3; }
-.color-btn[data-color="green"] { background:#b6ffb3; }
-.color-btn[data-color="blue"] { background:#b3d1ff; }
-.color-btn[data-color="yellow"] { background:#fff3a3; }
-.color-btn[data-color="black"] { background:#d6d6d6; }
