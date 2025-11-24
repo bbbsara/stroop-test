@@ -1,6 +1,6 @@
 // إعدادات اختبار ستروب
 
-// مدة الاختبار (بالـثواني)
+// مدة الاختبار (بالثواني)
 const TEST_DURATION = 45;
 
 // الألوان المستخدمة
@@ -13,5 +13,4 @@ const COLORS = [
 ];
 
 // رابط Google Apps Script لاستقبال النتائج
-// ⚠️ ضعي هنا رابط الويب الخاص بك بعد نشر Google Apps Script
-const GOOGLE_SCRIPT_URL = "ضعِ الرابط هنا";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyTFLrettV2lclBZm8WEFGRcs-a9RKSb55-2F3DeRt08v14FKDUaKY4W2p0iIiJB1Q/exec";
