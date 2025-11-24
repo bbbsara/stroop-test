@@ -1,102 +1,110 @@
 let timer;
 let timeLeft = TEST_DURATION;
+
 let correct = 0;
 let wrong = 0;
 let total = 0;
-let startTime = 0;
-let reactionTimes = [];
+
+let currentColor;
+let startTime;
+
+const startScreen = document.getElementById("start-screen");
+const testScreen = document.getElementById("test-screen");
+const endScreen = document.getElementById("end-screen");
+
+const usernameInput = document.getElementById("username");
+const timeLabel = document.getElementById("time");
+const cardWord = document.getElementById("color-word");
+
+document.getElementById("start-btn").onclick = startTest;
+document.getElementById("restart-btn").onclick = () => location.reload();
+
+document.querySelectorAll(".color-btn").forEach(btn => {
+    btn.onclick = () => checkAnswer(btn.dataset.color);
+});
 
 function startTest() {
-    document.getElementById("start-screen").style.display = "none";
-    document.getElementById("test-screen").style.display = "block";
+    if (usernameInput.value.trim() === "") {
+        alert("رجاءً اكتب الاسم قبل البدء");
+        return;
+    }
 
-    timeLeft = TEST_DURATION;
-    correct = 0;
-    wrong = 0;
-    total = 0;
-    reactionTimes = [];
-
-    document.getElementById("timer").innerText = timeLeft;
+    startScreen.classList.add("hidden");
+    testScreen.classList.remove("hidden");
 
     nextWord();
-    timer = setInterval(countDown, 1000);
-}
 
-function countDown() {
-    timeLeft--;
-    document.getElementById("timer").innerText = timeLeft;
+    timer = setInterval(() => {
+        timeLeft--;
+        timeLabel.innerText = timeLeft;
 
-    if (timeLeft <= 0) {
-        clearInterval(timer);
-        endTest();
-    }
+        if (timeLeft <= 0) finishTest();
+
+    }, 1000);
 }
 
 function nextWord() {
-    const randomColorWord = COLORS[Math.floor(Math.random() * COLORS.length)];
-    const randomInkColor = COLORS[Math.floor(Math.random() * COLORS.length)];
+    const randomText = COLORS[Math.floor(Math.random() * COLORS.length)];
+    const randomColor = COLORS[Math.floor(Math.random() * COLORS.length)];
 
-    document.getElementById("word").innerText = randomColorWord.name;
-    document.getElementById("word").style.color = randomInkColor.code;
+    currentColor = randomColor.code;
 
-    document.getElementById("options").innerHTML = "";
+    cardWord.innerText = randomText.name;
+    cardWord.style.color = randomColor.code;
 
-    COLORS.forEach(color => {
-        const btn = document.createElement("button");
-        btn.innerText = color.name;
-        btn.className = "option-btn";
-        btn.onclick = () => checkAnswer(color.name, randomInkColor.name);
-        document.getElementById("options").appendChild(btn);
-    });
-
-    startTime = Date.now();
+    startTime = performance.now();
 }
 
-function checkAnswer(selectedName, correctInkName) {
+function checkAnswer(chosenColor) {
+    const rt = performance.now() - startTime;
+
     total++;
 
-    let reactionTime = Date.now() - startTime;
-    reactionTimes.push(reactionTime);
+    if (chosenColor === currentColor) correct++;
+    else wrong++;
 
-    if (selectedName === correctInkName) {
-        correct++;
-    } else {
-        wrong++;
-    }
+    // إرسال كل محاولة مباشرة
+    sendAttempt(rt, chosenColor === currentColor);
 
     nextWord();
 }
 
-function endTest() {
-    document.getElementById("test-screen").style.display = "none";
-    document.getElementById("result-screen").style.display = "block";
+function finishTest() {
+    clearInterval(timer);
 
-    let avgTime = reactionTimes.length
-        ? Math.round(reactionTimes.reduce((a, b) => a + b, 0) / reactionTimes.length)
-        : 0;
+    testScreen.classList.add("hidden");
+    endScreen.classList.remove("hidden");
 
-    document.getElementById("result-correct").innerText = correct;
-    document.getElementById("result-wrong").innerText = wrong;
-    document.getElementById("result-total").innerText = total;
-    document.getElementById("result-time").innerText = avgTime;
+    document.getElementById("correct-count").innerText = correct;
+    document.getElementById("wrong-count").innerText = wrong;
+    document.getElementById("total-count").innerText = total;
 
-    sendToGoogle(correct, wrong, total, avgTime);
+    sendSummary();
 }
 
-function sendToGoogle(correct, wrong, total, avgTime) {
-    const name = document.getElementById("username").value || "بدون اسم";
-
+// إرسال كل محاولة
+function sendAttempt(rt, isCorrect) {
     fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            name: name,
-            correct: correct,
-            wrong: wrong,
-            total: total,
-            avgTime: avgTime,
-            timestamp: new Date().toISOString()
+            type: "attempt",
+            user: usernameInput.value,
+            rt: Math.round(rt),
+            correct: isCorrect ? 1 : 0
+        })
+    });
+}
+
+// إرسال ملخص الاختبار
+function sendSummary() {
+    fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify({
+            type: "summary",
+            user: usernameInput.value,
+            correct,
+            wrong,
+            total,
         })
     });
 }
