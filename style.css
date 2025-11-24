@@ -1,78 +1,77 @@
 body {
-    font-family: "Tahoma", sans-serif;
     background: #f7f7f7;
+    font-family: 'Tajawal', sans-serif;
     text-align: center;
-    padding: 20px;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    max-width: 600px;
-    margin: auto;
-    background: #ffffff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    margin-top: 40px;
 }
 
-h1 {
-    font-size: 28px;
-    color: #333;
+.title {
+    font-size: 32px;
     margin-bottom: 20px;
+    color: #333;
 }
 
-#timer {
-    font-size: 26px;
-    font-weight: bold;
-    color: #d9534f;
+.hidden {
+    display: none;
+}
+
+#username {
+    padding: 12px;
+    width: 250px;
+    font-size: 18px;
     margin-bottom: 15px;
 }
 
-#word {
-    font-size: 40px;
-    font-weight: bold;
-    margin: 25px 0;
-}
-
-.option-btn {
-    padding: 12px 20px;
-    margin: 8px;
+#start-btn,
+#restart-btn {
+    padding: 12px 25px;
     font-size: 18px;
-    background: #4285f4;
-    color: white;
+    background: #0a233b;
+    color: #fff;
     border: none;
-    border-radius: 8px;
-    cursor: pointer;
+    border-radius: 6px;
 }
 
-.option-btn:hover {
-    background: #3367d6;
+.timer {
+    font-size: 22px;
+    margin-bottom: 20px;
 }
 
-input {
-    padding: 10px;
+.card-container {
+    margin: 25px auto;
     width: 70%;
-    border-radius: 8px;
-    border: 1px solid #aaa;
-    font-size: 16px;
+    max-width: 300px;
 }
 
-button#start-btn {
-    padding: 15px 25px;
-    background: #28a745;
+.card-word {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 40px;
+    font-size: 40px;
+    border: 2px solid #ccc;
+    min-height: 60px;
+}
+
+.buttons {
+    margin-top: 25px;
+}
+
+.color-btn {
+    padding: 12px 25px;
+    margin: 8px;
     font-size: 20px;
-    color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
 }
 
-button#start-btn:hover {
-    background: #218838;
-}
-
-.result-box {
-    padding: 20px;
-    background: #e9f7ef;
-    border-radius: 10px;
-    margin-top: 20px;
-}
+.color-btn[data-color="red"] { background:#ffb3b3; }
+.color-btn[data-color="green"] { background:#b6ffb3; }
+.color-btn[data-color="blue"] { background:#b3d1ff; }
+.color-btn[data-color="yellow"] { background:#fff3a3; }
+.color-btn[data-color="black"] { background:#d6d6d6; }
