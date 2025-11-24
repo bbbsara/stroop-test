@@ -10,7 +10,65 @@
 
     <div class="container">
         <div id="start-screen" class="screen active">
-            <h1>اختبار ستروب (Stroop Test) 🧠</h1>
+            <h1>اختبار ستروب (Stroop Test) 🧠</h1><!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار ستروب - Stroop Test</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div id="start-screen" class="screen active">
+            <h1>اختبار ستروب 🧠</h1>
+            <p>لعبة تحدي الدماغ لقياس سرعة المعالجة والتركيز!</p>
+            
+            <div class="test-guide">
+                <h3>تعليمات هامة:</h3>
+                <ol>
+                    <li>المدة المتاحة: <strong>45 ثانية</strong>.</li>
+                    <li>المطلوب: <strong>اضغط على اللون الحقيقي</strong> للكلمة المكتوبة.</li>
+                    <li>مثال: إذا ظهرت كلمة "أحمر" بلون **أزرق**، يجب أن تضغط على زر "أزرق".</li>
+                    <li>لا تقرأ الكلمة! فقط ركز على **لون الخط** وتجاهل النص.</li>
+                </ol>
+            </div>
+            <input type="text" id="username" placeholder="اكتب اسمك للمشاركة..." autocomplete="off">
+            <button id="start-btn" onclick="startTest()">بدء التحدي 🚀</button>
+        </div>
+
+        <div id="test-screen" class="screen">
+            <div class="timer-box">
+                <span>الوقت المتبقي:</span>
+                <span id="timer">45</span>
+            </div>
+            
+            <div id="word-display" class="stroop-word"></div>
+
+            <div id="options-container" class="options-grid">
+                </div>
+        </div>
+
+        <div id="end-screen" class="screen">
+            <h2>انتهى الاختبار! 🏁</h2>
+            <div class="results-summary">
+                <p>الإجابات الصحيحة: <span id="score-correct">0</span></p>
+                <p>الأخطاء: <span id="score-wrong">0</span></p>
+                <p>المجموع: <span id="score-total">0</span></p>
+                <p>متوسط السرعة: <span id="avg-time">0</span> ms</p>
+                <p class="stroop-result">تأثير ستروب: <span id="stroop-effect">0</span> ms</p>
+            </div>
+            <p id="save-status">جاري حفظ البيانات...</p>
+            <button onclick="location.reload()">إعادة المحاولة 🔄</button>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
             <p>أمامك 45 ثانية. اختر لون الخط، وليس الكلمة المكتوبة!</p>
             <input type="text" id="username" placeholder="اكتب اسمك هنا..." autocomplete="off">
             <button id="start-btn" onclick="startTest()">بدء الاختبار 🚀</button>
