@@ -1,7 +1,8 @@
-/* إعدادات عامة */
+/* الخلفية "الجامدة" والتنسيقات العامة */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #e9ecef; /* خلفية الصفحة أغمق قليلاً للتباين */
+    /* خلفية متدرجة ذات طابع علمي هادئ */
+    background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,14 +12,15 @@ body {
     direction: rtl;
 }
 
-/* الحاوية الرئيسية */
+/* الحاوية الرئيسية (بطاقة الاختبار) */
 .container {
     background: white;
-    padding: 2.5rem;
+    padding: 30px 40px;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
     width: 90%;
-    max-width: 500px;
+    max-width: 550px;
+    border: 1px solid #c8d3e0;
 }
 
 /* الشاشات */
@@ -31,9 +33,32 @@ body {
     display: block;
 }
 
-/* النصوص */
-h1 { color: #2c3e50; margin-bottom: 10px; }
-p { color: #555; font-size: 1.1em; }
+/* تعليمات الاختبار (الجديد) */
+.test-guide {
+    background-color: #e8f5e9; /* خلفية خضراء فاتحة للفت الانتباه */
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 25px;
+    border-left: 5px solid #4caf50;
+    text-align: right;
+    font-size: 0.95em;
+    color: #333;
+}
+
+.test-guide h3 {
+    color: #1e88e5;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.test-guide ol {
+    padding-right: 20px;
+    list-style-position: inside;
+}
+
+.test-guide li {
+    margin-bottom: 5px;
+}
 
 /* حقل الاسم */
 input[type="text"] {
@@ -45,14 +70,14 @@ input[type="text"] {
     margin: 20px 0;
     text-align: center;
     outline: none;
-    transition: border-color 0.3s;
 }
 
 input[type="text"]:focus {
     border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
-/* زر البدء وإعادة المحاولة */
+/* زر البدء */
 #start-btn, button[onclick="location.reload()"] {
     background-color: #3498db;
     color: white;
@@ -62,50 +87,56 @@ input[type="text"]:focus {
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+    transition: all 0.2s ease;
 }
 
-#start-btn:hover { background-color: #2980b9; }
+#start-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.6);
+}
 
-/* الكلمة الملونة (الاختبار) */
+/* الكلمة الملونة */
 .stroop-word {
-    font-size: 70px;
-    font-weight: 800;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 80px; /* حجم أكبر */
+    font-weight: 900;
     margin: 30px 0;
-    min-height: 90px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    min-height: 100px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* ظل خفيف لإبراز النص */
 }
 
 /* شبكة الخيارات */
 .options-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* عمودين */
+    grid-template-columns: 1fr 1fr;
     gap: 15px;
     margin-top: 20px;
 }
 
-/* 🟢 تصحيح الأزرار لتظهر بوضوح */
+/* أزرار الألوان - تصميم جامد */
 .color-btn {
-    padding: 15px;
+    padding: 18px; /* مساحة أكبر */
     font-size: 20px;
     font-weight: bold;
-    color: #333;
-    border: 2px solid #bdc3c7; /* حدود رمادية واضحة */
-    border-radius: 10px;
-    background: #f8f9fa; /* خلفية رمادية فاتحة بدلاً من الأبيض */
+    color: #2c3e50;
+    border: 3px solid #ccc; /* حدود سميكة */
+    border-radius: 12px;
+    background: #f8f9fa;
     cursor: pointer;
     transition: all 0.2s;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .color-btn:hover {
-    background-color: #e2e6ea; /* تغميق اللون عند المرور */
-    border-color: #adb5bd;
-    transform: translateY(-2px);
+    background-color: #e2e6ea;
+    border-color: #3498db; /* حدود زرقاء عند المرور */
+    transform: scale(1.02);
 }
 
 .color-btn:active {
-    transform: translateY(0);
+    transform: scale(0.98);
 }
 
 /* المؤقت */
@@ -114,10 +145,35 @@ input[type="text"]:focus {
     color: #7f8c8d;
     margin-bottom: 10px;
 }
-#timer { color: #e74c3c; font-weight: bold; font-size: 1.5rem; }
+#timer { color: #e74c3c; font-weight: bold; font-size: 1.8rem; }
+
+/* ملخص النتائج */
+.results-summary p {
+    font-size: 1.15rem;
+    margin: 12px 0;
+    border-bottom: 1px dashed #ddd; /* خط منقط */
+    padding-bottom: 5px;
+    text-align: right;
+    padding-right: 15px;
+}
+
+.results-summary p:last-child { border-bottom: none; }
+
+.results-summary span {
+    float: left;
+    font-weight: bold;
+    color: #2980b9;
+}
+
+.stroop-result {
+    font-weight: bold;
+    background-color: #f1f8e9; /* تمييز تأثير ستروب */
+    padding: 5px;
+    border-radius: 5px;
+}
 
 /* حركة الظهور */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
 }
