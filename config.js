@@ -1,11 +1,11 @@
 const CONFIG = {
-    // 1. رابط تطبيق جوجل سكربت (تمت إضافته بنجاح ✅)
+    // رابط تطبيق جوجل الخاص بك
     SCRIPT_URL: "https://script.google.com/macros/s/AKfycbyTFLrettV2lclBZm8WEFGRcs-a9RKSb55-2F3DeRt08v14FKDUaKY4W2p0iIiJB1Q/exec",
 
-    // 2. مدة الاختبار بالثواني
+    // مدة الاختبار
     TEST_DURATION: 45,
 
-    // 3. قائمة الألوان المستخدمة في الاختبار
+    // الألوان
     COLORS: [
         { name: "أحمر", hex: "#e74c3c" },
         { name: "أخضر", hex: "#2ecc71" },
